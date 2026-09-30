@@ -383,7 +383,7 @@ body.menu-open .burger span:nth-child(3) { top: 22px; transform: rotate(-45deg);
   padding: 30px 26px 28px;
   border: 1px solid var(--line); border-radius: var(--radius);
   background: var(--milk);
-  transition: transform .45s var(--ease), box-shadow .45s var(--ease), border-color .45s;
+  transition: translate .45s var(--ease), box-shadow .45s var(--ease), border-color .45s;
 }
 .feature::after {
   content: ""; position: absolute; right: -60px; bottom: -60px;
@@ -391,7 +391,7 @@ body.menu-open .burger span:nth-child(3) { top: 22px; transform: rotate(-45deg);
   background: radial-gradient(closest-side, rgba(227, 173, 111, .35), transparent);
   opacity: 0; transition: opacity .45s;
 }
-.feature:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: transparent; }
+.feature:hover { translate: 0 -6px; box-shadow: var(--shadow); border-color: transparent; }
 .feature:hover::after { opacity: 1; }
 .feature__num { position: absolute; top: 24px; right: 24px; font-family: var(--font-display); font-style: italic; font-size: 15px; color: rgba(35, 25, 19, .3); }
 .feature__icon {
@@ -471,7 +471,7 @@ body.menu-open .burger span:nth-child(3) { top: 22px; transform: rotate(-45deg);
   border-radius: 28px;
   background: linear-gradient(160deg, var(--c1), var(--c2));
   color: var(--espresso);
-  transition: transform .55s var(--ease), box-shadow .55s var(--ease);
+  transition: translate .55s var(--ease), rotate .55s var(--ease), box-shadow .55s var(--ease);
 }
 .bean-card::before {
   content: ""; position: absolute; z-index: -1;
@@ -485,7 +485,7 @@ body.menu-open .burger span:nth-child(3) { top: 22px; transform: rotate(-45deg);
   border-radius: 50%; border: 2px solid rgba(35, 25, 19, .12);
   transform: rotate(28deg);
 }
-.bean-card:hover { transform: translateY(-8px) rotate(-.6deg); box-shadow: 0 34px 64px -28px rgba(60, 25, 10, .55); }
+.bean-card:hover { translate: 0 -8px; rotate: -.6deg; box-shadow: 0 34px 64px -28px rgba(60, 25, 10, .55); }
 .bean-card:hover::before { transform: scale(1.25); }
 .bean-card--medium { --c1: #eac7a6; --c2: #b97448; }
 .bean-card--dark { --c1: #3d281b; --c2: #1d130d; color: var(--crema); }
