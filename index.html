@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Зерно и Пар — кофейня · демо-проект</title>
+  <meta name="description" content="Демо-сайт кофейни «Зерно и Пар»: меню, зерно собственной обжарки, бронь столика онлайн. Проект для портфолио — кофейня вымышлена.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#17100b">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:title" content="Зерно и Пар — кофейня (демо-проект)">
+  <meta property="og:description" content="Пример лендинга под ключ: меню, зерно, отзывы, онлайн-бронь. Разработка — @vylno.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+  <!-- Иконки и зерно — один раз, дальше через <use> -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4.5 4.5L19 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 3c1 3 4.5 4.6 4.5 8.8A4.5 4.5 0 0 1 12 16.5a4.5 4.5 0 0 1-4.5-4.6c0-1.6.8-2.8 1.7-3.8.2 1.6 1 2.7 2.2 3C11 8.6 11 5.6 12 3ZM6 20.5h12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19c0-8 5-13.5 14.5-14.5C18.5 14 13.5 19 5 19Zm0 0 7.5-7.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-wheat" viewBox="0 0 24 24"><path d="M12 21V8m0 0c0-2.2 1.4-4.2 3.2-5.2.5 2.2-.7 4.3-3.2 5.2Zm0 0c0-2.2-1.4-4.2-3.2-5.2-.5 2.2.7 4.3 3.2 5.2Zm0 5c1.6-1.6 3.6-2.1 5.2-1.6-.6 1.9-2.6 3.1-5.2 3.1m0-1.5c-1.6-1.6-3.6-2.1-5.2-1.6.6 1.9 2.6 3.1 5.2 3.1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-cup" viewBox="0 0 24 24"><path d="M6.5 8h11l-1.3 12.1a1 1 0 0 1-1 .9H8.8a1 1 0 0 1-1-.9L6.5 8Zm-1-3h13l-1 3h-11l-1-3Zm3.5 8h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3.2 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5.2 3.5h3.6l1.9 4.7-2.4 1.5a11 11 0 0 0 6 6l1.5-2.4 4.7 1.9v3.6a2 2 0 0 1-2.2 2A17 17 0 0 1 3.2 5.7a2 2 0 0 1 2-2.2Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"/></symbol>
+    <symbol id="i-telegram" viewBox="0 0 24 24"><path d="M20.5 4.5 3.5 11l5.8 2 2.2 6 3-4 4.8 3.5 1.2-14Zm-11.2 8.5 8.2-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-viber" viewBox="0 0 24 24"><path d="M12 3.5c4.9 0 8.5 2.9 8.5 7.2S16.9 18 12 18h-.8L7.5 20.8v-3.6C5 15.9 3.5 13.5 3.5 10.7 3.5 6.4 7.1 3.5 12 3.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.6 8.2c.4-.4 1-.3 1.2.2l.5 1.1c.2.4 0 .8-.3 1l-.4.3c.4.9 1.2 1.7 2.1 2.1l.3-.4c.2-.3.7-.5 1-.3l1.1.5c.5.2.6.8.2 1.2l-.5.5c-.5.5-1.3.6-2 .3a7 7 0 0 1-3.5-3.5c-.3-.7-.2-1.5.3-2Z" fill="currentColor"/></symbol>
+    <symbol id="bean" viewBox="-16 -22 32 44">
+      <ellipse rx="14" ry="20" fill="#4a2c1a"/>
+      <ellipse rx="14" ry="20" fill="url(#beanShine)"/>
+      <path d="M0-18c-5 6 5 11 0 18s5 12 0 18" fill="none" stroke="#2a170c" stroke-width="2.6" stroke-linecap="round"/>
+    </symbol>
+    <defs>
+      <radialGradient id="beanShine" cx="35%" cy="30%" r="70%">
+        <stop offset="0" stop-color="#a8704a" stop-opacity=".9"/>
+        <stop offset=".6" stop-color="#5a341e" stop-opacity=".2"/>
+        <stop offset="1" stop-color="#2a170c" stop-opacity=".4"/>
+      </radialGradient>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#main">К содержимому</a>
+
+  <div class="demo-bar">
+    <span>Демо-сайт для портфолио — кофейня вымышлена.</span>
+    <a href="https://t.me/vylno" target="_blank" rel="noopener">Хотите такой же сайт? Напишите @vylno →</a>
+  </div>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a href="#top" class="logo" aria-label="Зерно и Пар — на главную">
+        <svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true">
+          <circle cx="20" cy="20" r="20" fill="currentColor"/>
+          <g transform="rotate(28 20 20)">
+            <ellipse cx="20" cy="20" rx="8.5" ry="12.5" fill="#e3ad6f"/>
+            <path d="M20 8.2c-3.6 4.2 3.6 7.6 0 11.8s3.6 7.6 0 11.8" fill="none" stroke="#231913" stroke-width="1.9" stroke-linecap="round"/>
+          </g>
+        </svg>
+        <span>Зерно <em>и</em> Пар</span>
+      </a>
+
+      <nav class="nav" aria-label="Основное меню">
+        <a href="#about">О нас</a>
+        <a href="#menu">Меню</a>
+        <a href="#beans">Зерно</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+
+      <div class="header__actions">
+        <a class="btn btn--sm" href="#booking">Забронировать</a>
+        <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <a href="#about">О нас</a>
+    <a href="#menu">Меню</a>
+    <a href="#beans">Зерно</a>
+    <a href="#reviews">Отзывы</a>
+    <a href="#contacts">Контакты</a>
+    <a class="btn btn--accent" href="#booking">Забронировать столик</a>
+  </div>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="top">
+      <div class="container hero__grid">
+        <div class="hero__text">
+          <div class="status reveal" data-status>
+            <span class="status__dot"></span>
+            <span data-status-text>Открыто каждый день</span>
+          </div>
+          <h1 class="reveal" data-delay="1">Кофе, ради которого <em>стоит проснуться</em></h1>
+          <p class="hero__lead reveal" data-delay="2">
+            Обжариваем зерно сами, печём круассаны каждое утро и варим кофе так,
+            будто это ваша первая чашка за день. Потому что так и есть.
+          </p>
+          <div class="hero__cta reveal" data-delay="3">
+            <a class="btn btn--accent" href="#booking">
+              Забронировать столик
+              <svg aria-hidden="true"><use href="#i-arrow"/></svg>
+            </a>
+            <a class="btn btn--ghost" href="#menu">Смотреть меню</a>
+          </div>
+          <dl class="hero__stats reveal" data-delay="3">
+            <div class="stat"><dt>сортов зерна</dt><dd>12</dd></div>
+            <div class="stat"><dt>кофе с собой</dt><dd>3 мин</dd></div>
+            <div class="stat"><dt>открываемся в будни</dt><dd>7:30</dd></div>
+          </dl>
+        </div>
+
+        <div class="hero__visual reveal" data-delay="2" aria-hidden="true">
+          <div class="hero__sun"></div>
+
+          <div class="ring">
+            <svg viewBox="0 0 200 200">
+              <defs><path id="ringPath" d="M100 100m-78 0a78 78 0 1 1 156 0a78 78 0 1 1-156 0"/></defs>
+              <text><textPath href="#ringPath" textLength="486" lengthAdjust="spacing">СВЕЖАЯ ОБЖАРКА • КАЖДЫЙ ДЕНЬ • ЗЕРНО И ПАР •</textPath></text>
+            </svg>
+            <div class="ring__center">
+              <svg viewBox="-16 -22 32 44"><use href="#bean"/></svg>
+            </div>
+          </div>
+
+          <svg class="hero__cup" viewBox="0 0 520 520">
+            <defs>
+              <linearGradient id="cupBody" x1="0" x2="1">
+                <stop offset="0" stop-color="#fffaf4"/>
+                <stop offset=".55" stop-color="#f1e3d2"/>
+                <stop offset="1" stop-color="#d4bca2"/>
+              </linearGradient>
+              <linearGradient id="saucer" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#fffaf4"/>
+                <stop offset="1" stop-color="#dfcbb4"/>
+              </linearGradient>
+              <radialGradient id="coffee" cx="50%" cy="40%" r="62%">
+                <stop offset="0" stop-color="#8f5733"/>
+                <stop offset=".6" stop-color="#5b321b"/>
+                <stop offset="1" stop-color="#361c0d"/>
+              </radialGradient>
+            </defs>
+            <g class="steam">
+              <path d="M222 206c-20-35 25-55 3-95-16-28 12-48 4-70"/>
+              <path d="M262 200c-17-40 28-60 6-102-16-28 14-46 6-70"/>
+              <path d="M302 206c-18-33 25-51 5-89-15-26 13-44 5-66"/>
+            </g>
+            <ellipse cx="260" cy="410" rx="192" ry="42" fill="url(#saucer)"/>
+            <ellipse cx="260" cy="402" rx="122" ry="22" fill="#000" opacity=".07"/>
+            <path d="M388 270c52-10 76 28 60 60-14 28-48 28-74 16" fill="none" stroke="#efe1cf" stroke-width="22" stroke-linecap="round"/>
+            <path d="M388 270c52-10 76 28 60 60-14 28-48 28-74 16" fill="none" stroke="#000" stroke-opacity=".05" stroke-width="8" stroke-linecap="round" transform="translate(3 4)"/>
+            <path d="M130 250c0 90 45 150 130 152 85-2 130-62 130-152Z" fill="url(#cupBody)"/>
+            <path d="M160 282c5 50 30 90 66 104" fill="none" stroke="#fff" stroke-opacity=".75" stroke-width="10" stroke-linecap="round"/>
+            <ellipse cx="260" cy="250" rx="130" ry="34" fill="#fffaf4"/>
+            <ellipse cx="260" cy="253" rx="116" ry="27" fill="url(#coffee)"/>
+            <ellipse cx="260" cy="253" rx="112" ry="25" fill="none" stroke="#c48a58" stroke-opacity=".5" stroke-width="4"/>
+            <path d="M260 272c-30-10-46-22-32-32 12-8 26-2 32 6 6-8 20-14 32-6 14 10-2 22-32 32Z" fill="#f3dfc6"/>
+          </svg>
+
+          <svg class="bean bean--1" data-depth="18" viewBox="-16 -22 32 44"><use href="#bean"/></svg>
+          <svg class="bean bean--2" data-depth="-12" viewBox="-16 -22 32 44"><use href="#bean"/></svg>
+          <svg class="bean bean--3" data-depth="24" viewBox="-16 -22 32 44"><use href="#bean"/></svg>
+          <svg class="bean bean--4" data-depth="-20" viewBox="-16 -22 32 44"><use href="#bean"/></svg>
+
+          <div class="float-card float-card--top" data-depth="10">
+            <span class="float-card__badge">Хит недели</span>
+            <b>Лавандовый раф</b>
+            <span>300 мл · 8 р.</span>
+          </div>
+          <div class="float-card float-card--bottom" data-depth="-8">
+            <span class="float-card__icon">★</span>
+            <div>
+              <b>4,9 из 5</b>
+              <span>оценка гостей</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>эспрессо</span><span>фильтр V60</span><span>лавандовый раф</span><span>круассаны из печи</span><span>зерно домой</span><span>какао с маршмеллоу</span>
+        <span>эспрессо</span><span>фильтр V60</span><span>лавандовый раф</span><span>круассаны из печи</span><span>зерно домой</span><span>какао с маршмеллоу</span>
+      </div>
+    </div>
+
+    <!-- ============ FEATURES ============ -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow reveal">О нас</span>
+            <h2 class="section-title reveal" data-delay="1">Почему к нам <em>возвращаются</em></h2>
+          </div>
+          <p class="section-sub reveal" data-delay="2">Маленькая кофейня с большой любовью к деталям: от зелёного зерна до пенки на вашем капучино.</p>
+        </div>
+
+        <div class="features">
+          <article class="feature reveal">
+            <span class="feature__num">01</span>
+            <div class="feature__icon"><svg aria-hidden="true"><use href="#i-flame"/></svg></div>
+            <h3>Своя обжарка</h3>
+            <p>Обжариваем небольшими партиями раз в неделю — зерно всегда свежее.</p>
+          </article>
+          <article class="feature reveal" data-delay="1">
+            <span class="feature__num">02</span>
+            <div class="feature__icon"><svg aria-hidden="true"><use href="#i-leaf"/></svg></div>
+            <h3>Зерно с фермы</h3>
+            <p>Эфиопия, Колумбия, Бразилия — знаем, кто и где вырастил каждый лот.</p>
+          </article>
+          <article class="feature reveal" data-delay="2">
+            <span class="feature__num">03</span>
+            <div class="feature__icon"><svg aria-hidden="true"><use href="#i-wheat"/></svg></div>
+            <h3>Выпечка с утра</h3>
+            <p>Круассаны и синнабоны достаём из печи к открытию, а не размораживаем.</p>
+          </article>
+          <article class="feature reveal" data-delay="3">
+            <span class="feature__num">04</span>
+            <div class="feature__icon"><svg aria-hidden="true"><use href="#i-cup"/></svg></div>
+            <h3>С собой за 3 минуты</h3>
+            <p>Спешите на работу? Закажите у бариста — отдадим, пока вы достаёте карту.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MENU ============ -->
+    <section class="section section--dark" id="menu">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow reveal">Меню</span>
+            <h2 class="section-title reveal" data-delay="1">Что <em>попробовать</em> сегодня</h2>
+          </div>
+          <div class="tabs reveal" data-delay="2" role="tablist" aria-label="Разделы меню">
+            <span class="tabs__indicator" aria-hidden="true"></span>
+            <button class="tab" role="tab" id="tab-coffee" aria-selected="true" aria-controls="panel-coffee">Кофе</button>
+            <button class="tab" role="tab" id="tab-other" aria-selected="false" aria-controls="panel-other" tabindex="-1">Не кофе</button>
+            <button class="tab" role="tab" id="tab-desserts" aria-selected="false" aria-controls="panel-desserts" tabindex="-1">Десерты</button>
+          </div>
+        </div>
+
+        <div class="menu-panel is-active" id="panel-coffee" role="tabpanel" aria-labelledby="tab-coffee">
+          <div class="menu-item"><span class="menu-item__name">Эспрессо</span><span class="menu-item__dots"></span><span class="menu-item__price">4,5 р.</span><p class="menu-item__desc">30 мл · плотный и сладкий, на нашей бленде</p></div>
+          <div class="menu-item"><span class="menu-item__name">Флэт уайт <span class="tag">хит</span></span><span class="menu-item__dots"></span><span class="menu-item__price">7 р.</span><p class="menu-item__desc">200 мл · двойной эспрессо и тонкий слой молока</p></div>
+          <div class="menu-item"><span class="menu-item__name">Капучино</span><span class="menu-item__dots"></span><span class="menu-item__price">6,5 р.</span><p class="menu-item__desc">300 мл · бархатная молочная пена</p></div>
+          <div class="menu-item"><span class="menu-item__name">Лавандовый раф <span class="tag">новинка</span></span><span class="menu-item__dots"></span><span class="menu-item__price">8 р.</span><p class="menu-item__desc">300 мл · сливки и сироп из лаванды</p></div>
+          <div class="menu-item"><span class="menu-item__name">Американо</span><span class="menu-item__dots"></span><span class="menu-item__price">5 р.</span><p class="menu-item__desc">250 мл · эспрессо и горячая вода</p></div>
+          <div class="menu-item"><span class="menu-item__name">Фильтр V60</span><span class="menu-item__dots"></span><span class="menu-item__price">7,5 р.</span><p class="menu-item__desc">250 мл · светлая обжарка, зерно меняем каждую неделю</p></div>
+          <div class="menu-item"><span class="menu-item__name">Кортадо</span><span class="menu-item__dots"></span><span class="menu-item__price">6 р.</span><p class="menu-item__desc">150 мл · эспрессо пополам с молоком</p></div>
+          <div class="menu-item"><span class="menu-item__name">Айс-латте</span><span class="menu-item__dots"></span><span class="menu-item__price">7,5 р.</span><p class="menu-item__desc">350 мл · лёд, эспрессо и холодное молоко</p></div>
+        </div>
+
+        <div class="menu-panel" id="panel-other" role="tabpanel" aria-labelledby="tab-other" hidden>
+          <div class="menu-item"><span class="menu-item__name">Матча-латте <span class="tag">хит</span></span><span class="menu-item__dots"></span><span class="menu-item__price">8 р.</span><p class="menu-item__desc">300 мл · японский чай на кокосовом молоке</p></div>
+          <div class="menu-item"><span class="menu-item__name">Какао с маршмеллоу</span><span class="menu-item__dots"></span><span class="menu-item__price">6,5 р.</span><p class="menu-item__desc">300 мл · как в детстве, только вкуснее</p></div>
+          <div class="menu-item"><span class="menu-item__name">Облепиховый чай</span><span class="menu-item__dots"></span><span class="menu-item__price">7 р.</span><p class="menu-item__desc">400 мл · с имбирём и мёдом</p></div>
+          <div class="menu-item"><span class="menu-item__name">Горячий шоколад</span><span class="menu-item__dots"></span><span class="menu-item__price">7,5 р.</span><p class="menu-item__desc">250 мл · бельгийский тёмный шоколад</p></div>
+          <div class="menu-item"><span class="menu-item__name">Листовой чай</span><span class="menu-item__dots"></span><span class="menu-item__price">6 р.</span><p class="menu-item__desc">600 мл · чайник на двоих</p></div>
+          <div class="menu-item"><span class="menu-item__name">Лимонад дня</span><span class="menu-item__dots"></span><span class="menu-item__price">7 р.</span><p class="menu-item__desc">400 мл · спросите бариста, какой сегодня</p></div>
+        </div>
+
+        <div class="menu-panel" id="panel-desserts" role="tabpanel" aria-labelledby="tab-desserts" hidden>
+          <div class="menu-item"><span class="menu-item__name">Баскский чизкейк <span class="tag">хит</span></span><span class="menu-item__dots"></span><span class="menu-item__price">8,5 р.</span><p class="menu-item__desc">кремовый внутри, карамельный снаружи</p></div>
+          <div class="menu-item"><span class="menu-item__name">Круассан</span><span class="menu-item__dots"></span><span class="menu-item__price">5 р.</span><p class="menu-item__desc">на сливочном масле, печём каждое утро</p></div>
+          <div class="menu-item"><span class="menu-item__name">Синнабон</span><span class="menu-item__dots"></span><span class="menu-item__price">6,5 р.</span><p class="menu-item__desc">корица, сливочный крем</p></div>
+          <div class="menu-item"><span class="menu-item__name">Брауни</span><span class="menu-item__dots"></span><span class="menu-item__price">5,5 р.</span><p class="menu-item__desc">с солёной карамелью</p></div>
+          <div class="menu-item"><span class="menu-item__name">Морковный торт</span><span class="menu-item__dots"></span><span class="menu-item__price">7,5 р.</span><p class="menu-item__desc">с грецким орехом и сырным кремом</p></div>
+          <div class="menu-item"><span class="menu-item__name">Сырники</span><span class="menu-item__dots"></span><span class="menu-item__price">9 р.</span><p class="menu-item__desc">со сметаной и ягодным соусом, до 12:00</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BEANS ============ -->
+    <section class="section" id="beans">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow reveal">Зерно домой</span>
+            <h2 class="section-title reveal" data-delay="1">Три сорта, <em>три характера</em></h2>
+          </div>
+          <p class="section-sub reveal" data-delay="2">Все лоты — в пачках по 250 г. Смелем бесплатно под вашу турку, гейзер или кофемашину.</p>
+        </div>
+
+        <div class="beans">
+          <article class="bean-card reveal">
+            <span class="bean-card__country">Эфиопия · Иргачеффе</span>
+            <h3>Цветочный<br>и яркий</h3>
+            <ul class="notes"><li>жасмин</li><li>бергамот</li><li>персик</li></ul>
+            <div class="roast">
+              <div class="roast__label"><span>Обжарка</span><span>светлая</span></div>
+              <div class="roast__bar"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
+            </div>
+            <div class="bean-card__foot">
+              <span class="bean-card__price">34 р. <small>/ 250 г</small></span>
+              <button class="icon-btn" type="button" data-toast="Демо: здесь откроется корзина" aria-label="Купить Эфиопию"><svg aria-hidden="true"><use href="#i-arrow-up"/></svg></button>
+            </div>
+          </article>
+
+          <article class="bean-card bean-card--medium reveal" data-delay="1">
+            <span class="bean-card__country">Колумбия · Уила</span>
+            <h3>Сладкий<br>и мягкий</h3>
+            <ul class="notes"><li>карамель</li><li>красное яблоко</li><li>фундук</li></ul>
+            <div class="roast">
+              <div class="roast__label"><span>Обжарка</span><span>средняя</span></div>
+              <div class="roast__bar"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+            </div>
+            <div class="bean-card__foot">
+              <span class="bean-card__price">29 р. <small>/ 250 г</small></span>
+              <button class="icon-btn" type="button" data-toast="Демо: здесь откроется корзина" aria-label="Купить Колумбию"><svg aria-hidden="true"><use href="#i-arrow-up"/></svg></button>
+            </div>
+          </article>
+
+          <article class="bean-card bean-card--dark reveal" data-delay="2">
+            <span class="bean-card__country">Бразилия · Серрадо</span>
+            <h3>Шоколадный<br>и плотный</h3>
+            <ul class="notes"><li>тёмный шоколад</li><li>орех</li><li>какао</li></ul>
+            <div class="roast">
+              <div class="roast__label"><span>Обжарка</span><span>средне-тёмная</span></div>
+              <div class="roast__bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+            </div>
+            <div class="bean-card__foot">
+              <span class="bean-card__price">25 р. <small>/ 250 г</small></span>
+              <button class="icon-btn" type="button" data-toast="Демо: здесь откроется корзина" aria-label="Купить Бразилию"><svg aria-hidden="true"><use href="#i-arrow-up"/></svg></button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ REVIEWS ============ -->
+    <section class="section section--soft" id="reviews">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow reveal">Отзывы</span>
+            <h2 class="section-title reveal" data-delay="1">Нас советуют <em>друзьям</em></h2>
+            <p class="demo-note reveal" data-delay="2">Примеры отзывов для демо-версии сайта</p>
+          </div>
+          <div class="slider-nav reveal" data-delay="2">
+            <button class="slider-btn" type="button" data-slide="-1" aria-label="Предыдущий отзыв"><svg aria-hidden="true"><use href="#i-arrow-left"/></svg></button>
+            <button class="slider-btn" type="button" data-slide="1" aria-label="Следующий отзыв"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
+        </div>
+
+        <div class="reviews reveal" data-delay="1" tabindex="0" aria-label="Отзывы гостей">
+          <figure class="review">
+            <div class="stars" aria-label="5 из 5">★★★★★</div>
+            <blockquote>Лучший флэт уайт на районе. Бариста запомнил, что я пью без сахара, уже со второго раза.</blockquote>
+            <figcaption class="review__author"><span class="avatar">А</span><span><b>Анна</b><span>заходит каждое утро</span></span></figcaption>
+          </figure>
+          <figure class="review">
+            <div class="stars" aria-label="5 из 5">★★★★★</div>
+            <blockquote>Работаю тут с ноутбуком: тихо, розетки у каждого стола, быстрый Wi-Fi. А баскский чизкейк — отдельная любовь.</blockquote>
+            <figcaption class="review__author"><span class="avatar avatar--2">Д</span><span><b>Дмитрий</b><span>фрилансер</span></span></figcaption>
+          </figure>
+          <figure class="review">
+            <div class="stars" aria-label="5 из 5">★★★★★</div>
+            <blockquote>Взяли домой пачку Эфиопии и попросили смолоть под гейзер. Дома получается почти как у них.</blockquote>
+            <figcaption class="review__author"><span class="avatar avatar--3">К</span><span><b>Катя</b><span>любит фильтр</span></span></figcaption>
+          </figure>
+          <figure class="review">
+            <div class="stars" aria-label="5 из 5">★★★★★</div>
+            <blockquote>Забронировал столик на день рождения прямо с сайта за минуту — к нашему приходу всё было готово.</blockquote>
+            <figcaption class="review__author"><span class="avatar avatar--4">М</span><span><b>Максим</b><span>отмечал ДР</span></span></figcaption>
+          </figure>
+          <figure class="review">
+            <div class="stars" aria-label="5 из 5">★★★★★</div>
+            <blockquote>Лавандовый раф — это что-то. Теперь у меня есть традиция: каждую пятницу после учёбы.</blockquote>
+            <figcaption class="review__author"><span class="avatar avatar--2">О</span><span><b>Оля</b><span>студентка</span></span></figcaption>
+          </figure>
+          <figure class="review">
+            <div class="stars" aria-label="5 из 5">★★★★★</div>
+            <blockquote>Приятно, что можно с собакой: для нашего Бони всегда находится миска воды и печенька.</blockquote>
+            <figcaption class="review__author"><span class="avatar avatar--3">И</span><span><b>Игорь</b><span>и корги Боня</span></span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BOOKING ============ -->
+    <section class="section" id="booking">
+      <div class="container">
+        <div class="booking">
+          <div class="booking__text">
+            <span class="eyebrow reveal">Бронь столика</span>
+            <h2 class="section-title reveal" data-delay="1">Займём для вас <em>лучший столик</em></h2>
+            <p class="booking__lead reveal" data-delay="2">Оставьте заявку — перезвоним в течение 10 минут и подтвердим бронь.</p>
+            <ul class="perks reveal" data-delay="3">
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Держим столик 15 минут</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Подготовим торт на день рождения</li>
+              <li><svg aria-hidden="true"><use href="#i-check"/></svg>Места у окна и с розетками</li>
+            </ul>
+          </div>
+
+          <form class="form reveal" data-delay="1" novalidate>
+            <div class="field">
+              <label for="f-name">Имя</label>
+              <input id="f-name" name="name" type="text" autocomplete="given-name" placeholder="Как к вам обращаться">
+              <span class="field__error" aria-live="polite"></span>
+            </div>
+            <div class="field">
+              <label for="f-phone">Телефон</label>
+              <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+375 (29) 123-45-67">
+              <span class="field__error" aria-live="polite"></span>
+            </div>
+            <div class="field">
+              <label for="f-date">Дата</label>
+              <input id="f-date" name="date" type="date">
+              <span class="field__error" aria-live="polite"></span>
+            </div>
+            <div class="field">
+              <label for="f-time">Время</label>
+              <select id="f-time" name="time"></select>
+              <span class="field__error" aria-live="polite"></span>
+            </div>
+            <div class="field field--full">
+              <span class="field__label" id="guests-label">Гостей</span>
+              <div class="stepper" role="group" aria-labelledby="guests-label">
+                <button type="button" data-step="-1" aria-label="Меньше гостей">−</button>
+                <output id="f-guests" aria-live="polite">2</output>
+                <button type="button" data-step="1" aria-label="Больше гостей">+</button>
+              </div>
+            </div>
+            <button class="btn btn--accent" type="submit">
+              Забронировать
+              <svg aria-hidden="true"><use href="#i-arrow"/></svg>
+            </button>
+
+            <div class="form-success" role="status">
+              <svg class="success-check" viewBox="0 0 52 52" aria-hidden="true">
+                <circle cx="26" cy="26" r="24"/>
+                <path d="m15 27 7 7 15-16"/>
+              </svg>
+              <h3>Столик забронирован!</h3>
+              <p class="form-success__details"></p>
+              <p class="form-success__demo">Это демо-сайт: заявка никуда не ушла. В настоящем проекте она сразу придёт владельцу в Telegram.</p>
+              <button class="btn btn--light btn--sm" type="button" data-reset>Забронировать ещё</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section section--soft" id="faq">
+      <div class="container">
+        <div class="section-head section-head--center">
+          <div>
+            <span class="eyebrow reveal">Вопросы</span>
+            <h2 class="section-title reveal" data-delay="1">Частые <em>вопросы</em></h2>
+          </div>
+        </div>
+        <div class="faq">
+          <details class="reveal">
+            <summary>Можно прийти с собакой?<span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__body">Конечно, мы dog-friendly. Нальём воды и угостим печеньем для хвостатых.</div>
+          </details>
+          <details class="reveal">
+            <summary>Есть растительное молоко?<span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__body">Да: овсяное, кокосовое и миндальное. Замена в любом напитке — плюс 1 рубль.</div>
+          </details>
+          <details class="reveal">
+            <summary>Можно купить зерно домой?<span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__body">Все сорта продаём в пачках по 250 г. Смелем бесплатно под вашу турку, гейзер или кофемашину.</div>
+          </details>
+          <details class="reveal">
+            <summary>Вы проводите мероприятия?<span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__body">По субботам — бесплатные каппинги, а ещё можно снять зал целиком на вечер до 30 гостей.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACTS ============ -->
+    <section class="section" id="contacts">
+      <div class="container contacts">
+        <div class="contact-card reveal">
+          <span class="eyebrow">Контакты</span>
+          <h2 class="section-title">Ждём <em>в гости</em></h2>
+          <div class="contact-row">
+            <span class="contact-row__icon"><svg aria-hidden="true"><use href="#i-pin"/></svg></span>
+            <div><b>Минск, ул. Зерновая, 7</b><span>вход со двора, второй подъезд</span></div>
+          </div>
+          <div class="contact-row">
+            <span class="contact-row__icon"><svg aria-hidden="true"><use href="#i-clock"/></svg></span>
+            <div><b>Пн–Пт 7:30–22:00</b><span>Сб–Вс 9:00–22:00</span></div>
+          </div>
+          <div class="contact-row">
+            <span class="contact-row__icon"><svg aria-hidden="true"><use href="#i-phone"/></svg></span>
+            <div><b>+375 (29) 000-00-00</b><span>телефон для примера</span></div>
+          </div>
+          <div class="socials">
+            <button type="button" class="social" data-toast="Демо: тут будет ссылка на Instagram" aria-label="Instagram"><svg aria-hidden="true"><use href="#i-instagram"/></svg></button>
+            <button type="button" class="social" data-toast="Демо: тут будет ссылка на Telegram" aria-label="Telegram"><svg aria-hidden="true"><use href="#i-telegram"/></svg></button>
+            <button type="button" class="social" data-toast="Демо: тут будет ссылка на Viber" aria-label="Viber"><svg aria-hidden="true"><use href="#i-viber"/></svg></button>
+          </div>
+        </div>
+
+        <div class="map reveal" data-delay="1" role="img" aria-label="Схема проезда (иллюстрация)">
+          <svg viewBox="0 0 600 440" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="600" height="440" fill="#eadcc9"/>
+            <path d="M-20 330C90 300 170 360 280 330S470 250 620 280v60C480 310 390 390 280 400S80 360-20 390Z" fill="#bcd3d6"/>
+            <path d="M420 40c60-10 120 20 130 70s-40 80-100 70-90-40-80-80 20-55 50-60Z" fill="#c9d8b0"/>
+            <g fill="#f6ecdf">
+              <rect x="40" y="40" width="140" height="90" rx="14"/>
+              <rect x="210" y="40" width="160" height="90" rx="14"/>
+              <rect x="40" y="160" width="140" height="110" rx="14"/>
+              <rect x="210" y="160" width="75" height="110" rx="14"/>
+              <rect x="315" y="160" width="140" height="110" rx="14"/>
+              <rect x="485" y="210" width="100" height="60" rx="14"/>
+            </g>
+            <g fill="none" stroke="#fffaf4" stroke-width="16" stroke-linecap="round">
+              <path d="M0 145h600"/>
+              <path d="M195 0v300"/>
+              <path d="M300 145v140"/>
+              <path d="M470 145v140"/>
+            </g>
+            <path d="M195 145h105v70" fill="none" stroke="#d0613a" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 12"/>
+          </svg>
+          <div class="map__pin"><span></span></div>
+          <div class="map__label">
+            <b>Зерно и Пар</b>
+            <span>ул. Зерновая, 7</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <p class="footer__big">Приходите <em>на кофе</em></p>
+          <a class="btn btn--light" href="#booking">Забронировать столик <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div>
+          <h4>Разделы</h4>
+          <ul>
+            <li><a href="#about">О нас</a></li>
+            <li><a href="#menu">Меню</a></li>
+            <li><a href="#beans">Зерно домой</a></li>
+            <li><a href="#faq">Вопросы</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Часы работы</h4>
+          <ul>
+            <li>Пн–Пт 7:30–22:00</li>
+            <li>Сб–Вс 9:00–22:00</li>
+            <li>Минск, ул. Зерновая, 7</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© <span data-year>2026</span> «Зерно и Пар» — демо-проект, кофейня вымышлена</span>
+        <span class="credit">Дизайн и разработка — <a href="https://t.me/vylno" target="_blank" rel="noopener">@vylno</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
